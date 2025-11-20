@@ -1,9 +1,16 @@
 #include <Arduino.h>
 
 
-int bateryPin = A0;
-int voltageinBatery = 0;
-int ratio = 2;          // коефицент делителя напряжения
+ const int BATPIN = A0;
+ const float INTERNREF = 1.1f;
+ const float R1 = 0;
+ const float R2 = 0;
+ const float RATIO = (R1 + R2) / R2;
+ const float VMIN = 3.3f;
+ const float VMAX = 4.2f;
+ const float K = R2 / (R1 + R2);
+
+          
 
 void setup() 
 {
@@ -18,7 +25,7 @@ void loop()
   
   for(int sempl = 0; sempl < 20; ++sempl)
   {
-     adc += analogRead(bateryPin);
+     adc += analogRead(BATPIN);
       delayMicroseconds(200);
   }
   adc /= 20;  
