@@ -26,7 +26,7 @@ void loop()
   for(int sempl = 0; sempl < 20; ++sempl)
   {
      adc += analogRead(BATPIN);
-      delayMicroseconds(200);
+      delayMicroseconds(50);
   }
   adc /= 20;  
   Serial.println(adc);   //подключить конденсатор паралельно нижнему резистору 0.01-0.1мкФ
