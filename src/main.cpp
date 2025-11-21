@@ -30,9 +30,11 @@ void loop()
       delayMicroseconds(50);
   }
   adc /= 20;                              // уреднение значения АЦП
-  Va0 = adc * (INREF / 1023);             // вычисление напряжения на пине А0 
-  Vbat = (adc * (INREF / 1023)) * RATIO;  // вычисление напряжения на батарее
+  Va0 = adc * (INREF / 1024);             // вычисление напряжения на пине А0 
+  Vbat = (adc * (INREF / 1024)) * RATIO;  // вычисление напряжения на батарее
   int percent = ((Vbat - VMIN) / (VMAX - VMIN)) * 100; // вычисление процента зарядки батареи
+  if (percent > 100) percent = 100;
+  if (percent < 0) percent = 0;
 
   Serial.print("Значение АЦП           ");
   Serial.println(adc);   //подключить конденсатор паралельно нижнему резистору 0.01-0.1мкФ
